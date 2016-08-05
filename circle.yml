@@ -8,6 +8,9 @@ machine:
 
 dependencies:
   pre:
+    - which mvn
+    - sudo apt-get remove mvn
+    - which mvn
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - tar -zxvf apache-maven-3.3.9-bin.tar.gz
     - echo $SPARK_HOME
