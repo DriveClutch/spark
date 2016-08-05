@@ -28,6 +28,7 @@ dependencies:
 
 test:
   override:
+    - mvn -DskipTests
     - ./make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $M2/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
 deployment:
