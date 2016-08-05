@@ -3,13 +3,13 @@ machine:
     SBT_VERSION: 0.13.11
     JAVA_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
     SCALA_VERSION: 2.11.8
-
+    SPARK_HOME: $HOME/spark
 dependencies:
   pre:
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - tar -zxvf apache-maven-3.3.9-bin.tar.gz
-    - echo $HOME
-    - pwd
+    - echo $SPARK_HOME
+    - ls -al $SPARK_HOME
     - mkdir $HOME/.bintray
     - echo -e "realm = Bintray\nhost = dl.bintray.com\nuser = ${BINTRAY_USER}\npassword = ${BINTRAY_PASSWORD}" > $HOME/.bintray/.download_credentials
     - echo -e "realm = Bintray API Realm\nhost = api.bintray.com\nuser = ${BINTRAY_USER}\npassword = ${BINTRAY_PASSWORD}" > $HOME/.bintray/.credentials
@@ -22,7 +22,7 @@ dependencies:
 
 test:
   override:
-    - $HOME/spark/make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $HOME/apache-maven-3.3.9/bin/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
+    - $HOME/spark/make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $SPARK_HOME/apache-maven-3.3.9/bin/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
 deployment:
   release:
