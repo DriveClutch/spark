@@ -4,15 +4,16 @@ machine:
     JAVA_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
     SCALA_VERSION: 2.11.8
     SPARK_HOME: $HOME/spark
-    MVN_HOME: $SPARK_HOME/apache-maven-3.3.9/bin    
-    MVN: $MVN_HOME/mvn
+    M2_HOME: $SPARK_HOME/apache-maven-3.3.9
+    M2: $M2_HOME/bin    
+    PATH: $PATH:$M2
 
 dependencies:
   pre:
+    - echo $PATH
     - which mvn
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - tar -zxvf apache-maven-3.3.9-bin.tar.gz
-    - ln -s $MVN mvn        
     - which mvn 
     - echo $SPARK_HOME
     - ls -al $SPARK_HOME
