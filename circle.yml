@@ -10,10 +10,10 @@ machine:
 dependencies:
   pre:
     - which mvn
-    - which mvn
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - tar -zxvf apache-maven-3.3.9-bin.tar.gz
-    
+    - ln -s $MVN mvn        
+    - which mvn 
     - echo $SPARK_HOME
     - ls -al $SPARK_HOME
     - mkdir $HOME/.bintray
