@@ -6,7 +6,6 @@ machine:
     SPARK_HOME: $HOME/spark
     M2_HOME: $SPARK_HOME/apache-maven-3.3.9
     M2: $M2_HOME/bin    
-    PATH: $PATH: $M2
     MAVEN_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
 
 dependencies:
