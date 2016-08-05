@@ -4,9 +4,6 @@ machine:
     JAVA_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
     SCALA_VERSION: 2.11.8
 
-   mvn:
-    version: 3.3.9
-
 dependencies:
   pre:
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
