@@ -4,6 +4,8 @@ machine:
     JAVA_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
     SCALA_VERSION: 2.11.8
     SPARK_HOME: $HOME/spark
+    MVN: $SPARK_HOME/apache-maven-3.3.9/bin/mvn
+
 dependencies:
   pre:
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
@@ -22,7 +24,7 @@ dependencies:
 
 test:
   override:
-    - $HOME/spark/make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $SPARK_HOME/apache-maven-3.3.9/bin/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
+    - $HOME/spark/make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
 deployment:
   release:
