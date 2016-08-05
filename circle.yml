@@ -6,13 +6,11 @@ machine:
     SPARK_HOME: $HOME/spark
     M2_HOME: $SPARK_HOME/apache-maven-3.3.9
     M2: $M2_HOME/bin    
-    PATH: $PATH:$M2
+    PATH: $PATH: $M2
     MAVEN_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
 
 dependencies:
   pre:
-    - echo $PATH
-    - which mvn
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - tar -zxvf apache-maven-3.3.9-bin.tar.gz
     - which mvn 
@@ -31,7 +29,7 @@ dependencies:
 
 test:
   override:
-    - $HOME/spark/make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $M2/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
+    - ./make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $M2/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
 deployment:
   release:
