@@ -6,8 +6,7 @@ machine:
     SPARK_HOME: $HOME/spark
     M2_HOME: $SPARK_HOME/apache-maven-3.3.9
     M2: $M2_HOME/bin    
-    MAVEN_OPTS: -Xmx3G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G
-
+    MAVEN_OPTS: "-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 dependencies:
   pre:
     - wget http://mirror.stjschools.org/public/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
@@ -25,13 +24,3 @@ dependencies:
     - "~/.ivy2"
     - "~/.sbt"
     - "~/.m2"
-
-test:
-  override:
-    - mvn -DskipTests
-
-deployment:
-  release:
-    tag: /v[0-9]+(\.[0-9]+)*/
-    commands:
-      - sbt publish
