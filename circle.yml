@@ -20,7 +20,7 @@ dependencies:
     - echo -e "realm = Bintray API Realm\nhost = api.bintray.com\nuser = ${BINTRAY_USER}\npassword = ${BINTRAY_PASSWORD}" > $HOME/.bintray/.credentials
     - wget --output-document=$HOME/bin/sbt-launch.jar https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/"$SBT_VERSION"/sbt-launch.jar
     - echo "java $JAVA_OPTS -jar \`dirname \$0\`/sbt-launch.jar \"\$@\"" > $HOME/bin/sbt
-    - chmod u+x $HOME/bin/sbt
+    - ./make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $M2/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
   cache_directories:
     - "~/.ivy2"
     - "~/.sbt"
@@ -29,7 +29,6 @@ dependencies:
 test:
   override:
     - mvn -DskipTests
-    - ./make-distribution.sh  --name spark-1.6.2-hadoop-2.6.2-scala-2.11 --mvn $M2/mvn -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
 deployment:
   release:
